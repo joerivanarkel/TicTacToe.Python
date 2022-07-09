@@ -1,3 +1,8 @@
+
+
+from random import randint
+
+
 def new_board():
     return [[None, None, None], [None, None, None], [None, None, None]]
 
@@ -26,21 +31,17 @@ def get_move(symbol):
 # print(get_move())
 
 def make_move(boardvar, coords, symbol):
-    result = False
-    while result is False:
-        result = validate_move(boardvar, coords)
-        if result is True:
-            boardvar[coords[0]][coords[1]] = symbol
-            return boardvar
-        if result is False:
-            print('')
-            print('Invalid move')
-            coords = get_move(symbol)
+    boardvar[coords[0]][coords[1]] = symbol
+    return boardvar
 
 
 def validate_move(boardvar, coords):
-    if boardvar[coords[0]][coords[1]] is None:
-        return True
+    # if type(coords[0]) is not int or type(coords[1]) is not int:
+    #     return False
+    
+    if coords[0] < 3 and coords[0] > -1 and coords[1] < 3 and coords[1] > -1:
+        if boardvar[coords[0]][coords[1]] is None:
+            return True
     else:
         return False
 
@@ -73,3 +74,6 @@ def any_move_left(boardvar):
                 return True
     return False
 
+def random_move():
+    move = [randint(0,2), randint(0,2)]
+    return move
