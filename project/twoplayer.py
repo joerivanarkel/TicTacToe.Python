@@ -21,14 +21,17 @@ while game_ongoing is True:
             print('Invalid move, try again.')
             print('---')
     
+    # visualize board
     render(board)
     
+    # check if x won
     winresultx = get_winner(board, 'X')
     if winresultx is True:
         game_ongoing = False
         winner = 'X'
         break
     
+    # check if its a draw
     drawresultx = any_move_left(board)
     if drawresultx is False:
         draw = True
@@ -48,20 +51,23 @@ while game_ongoing is True:
             print('Invalid move, try again.')
             print('---')
     
+    # visualize board
     render(board)
 
+    # check if O won
     winresulto = get_winner(board, 'O')
     if winresulto is True:
         game_ongoing = False
         winner = 'O'
         break
-
+    
+    # check if its a draw
     drawresulto = any_move_left(board)
     if drawresulto is False:
         draw = True
         break
 
-
+# results
 if winner == 'X':
     print('X Has Won')
     

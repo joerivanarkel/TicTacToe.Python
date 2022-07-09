@@ -16,38 +16,61 @@ while game_ongoing is True:
             board = make_move(board, move, 'X')
             result = False
             break
+        if result is False:
+            print('---')
+            print('Invalid move, try again.')
+            print('---')
     
-    
+    # visualize board
     render(board)
     
+    # check if X won
     winresultx = get_winner(board, 'X')
     if winresultx is True:
         game_ongoing = False
         winner = 'X'
         break
     
+    # check if its a draw
     drawresultx = any_move_left(board)
     if drawresultx is False:
         draw = True
         break
     
     # AI Moves
-    aimove = random_move()
-    board = make_move(board, aimove, 'O')
+    result = False
+    while result is False:
+        aimove = random_move()
+        result = validate_move(board, aimove)
+        if result is True:
+            board = make_move(board, aimove, 'O')
+            result = False
+            break
+        if result is False:
+            print('---')
+            print('Invalid move, try again.')
+            print('---')
+    
+    
+    
+    
+    # visualize board
     render(board)
 
+    # check if O won
     winresulto = get_winner(board, 'O')
     if winresulto is True:
         game_ongoing = False
         winner = 'O'
         break
-
+    
+    # check if its a draw
     drawresulto = any_move_left(board)
     if drawresulto is False:
         draw = True
         break
 
-
+# results
 if winner == 'X':
     print('X Has Won')
     
